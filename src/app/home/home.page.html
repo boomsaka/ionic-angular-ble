@@ -1,20 +1,37 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      A wired App
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <a routerLink="/paired"><ion-button> Paired Devices</ion-button></a>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <!-- <ion-button expand="block" (click)="showWeather()">
+    <ion-icon name="location"></ion-icon>
+    <p>Show Weather</p>
+  </ion-button>
+  <div class="ion-padding">
+    <span><img src={{icon}}><span style="position:relative; bottom: 15px;">
+    {{temperature}} {{place}} {{type}}</span></span>
+  </div> -->
+  <ion-button expand="block" (click)="scan()">
+    <ion-icon name="Bluetooth"></ion-icon>
+    <p>Scan</p>
+  </ion-button>
+
+  <p>Status: {{statusMessage}}</p>
+  <ion-list>
+    <ion-card-content ion-item *ngFor="let device of devices">
+      <ion-button expand="block" (click)="connectToDevice(device)">
+          <p>{{device.id}}</p>
+      </ion-button>
+      <p>{{device.name || 'Unnamed'}}</p>
+      <p>RSSI: {{device.rssi}}</p>
+      <p>Advertising: {{parsedData}}</p>
+    </ion-card-content>
+  </ion-list>
+
 </ion-content>

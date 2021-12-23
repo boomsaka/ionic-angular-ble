@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Paired Devices</ion-title>
+    <a routerLink="/home">
+      <ion-button> Go Back</ion-button>
+    </a>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-button expand="block" (click)="listIOSPairedDevices()">
+    <ion-icon name="refresh"></ion-icon>
+    <p>&nbsp; List Paired Devices</p>
+  </ion-button>
+
+
+<!-- Try bluetoothclassic on android -->
+  <ion-row>
+    <ion-col>
+      <ion-item *ngFor="let i of listDevices">
+        <ion-label>{{i.name}} {{i.id}}</ion-label>
+        <ion-button (click)='connect(i)'>CONNECT</ion-button>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+<!-- 
+  <ion-row>
+    <ion-col>
+      <ion-list radio-group [(ngModel)]="pairedDeviceID" *ngIf="listToggle">
+        <ion-radio-group>
+          <ion-list-header>
+            <ion-label> Devices List </ion-label>
+          </ion-list-header>
+          <ion-item *ngFor="let i of pairedList; let j = index">
+            <ion-label>{{i.name}} {{i.id}}</ion-label>
+            <ion-radio value="{{j}}"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-col>
+  </ion-row> -->
+
+  <ion-button *ngIf="listToggle" (click)="selectDevice()">
+    <ion-icon name="bluetooth"></ion-icon>&nbsp;Connect Bluetooth Devices
+  </ion-button>
+  <ion-list>
+    <ion-label>Type the data</ion-label>
+    <ion-input type='text' name="dataSend" [(ngModel)]="dataSend"></ion-input>
+  </ion-list>
+  <ion-button (click)="sendData()">
+    <ion-icon name='send'></ion-icon>&nbsp;Send Data Via Bluetooth
+  </ion-button>
+</ion-content>
